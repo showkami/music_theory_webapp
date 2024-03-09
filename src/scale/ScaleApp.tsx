@@ -4,14 +4,14 @@ import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import {Oscillator} from "tone";
 import OscillatorButton from "../component/OscillatorButton.tsx";
 
-export default function NewScaleApp() {
+export default function ScaleApp() {
   const [tonicFreq, setTonicFreq] = useState<number>(440);
 
   const radius: number = 100;
 
   return (
     <>
-      <Typography variant={"h2"}>NewScaleApp</Typography>
+      <Typography variant={"h2"}>ScaleApp</Typography>
 
       <Box width={radius * 2} style={{'position': 'relative'}} >
         {/* 親で position 指定をしておくことで、子要素の位置指定を、親領域内での座標でできる https://qiita.com/ikm/items/c20f0afb2e6c74fd807d */}
