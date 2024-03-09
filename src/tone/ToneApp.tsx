@@ -1,6 +1,6 @@
 import React, {useEffect, useMemo, useState} from 'react';
 import {ButtonGroup, Button, Input} from '@mui/material';
-import OscillatorButton from './OscillatorButton.tsx'
+import OscillatorButton from '../component/OscillatorButton.tsx'
 
 
 const ToneApp = () => {
