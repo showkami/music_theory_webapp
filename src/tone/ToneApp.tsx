@@ -1,6 +1,7 @@
 import React, {useEffect, useMemo, useState} from 'react';
-import {ButtonGroup, Button, Input} from '@mui/material';
+import {ButtonGroup, Button, Input, Typography} from '@mui/material';
 import OscillatorButton from '../component/OscillatorButton.tsx'
+import FrequencyInput from "../component/FrequencyInput.tsx";
 
 
 const ToneApp = () => {
@@ -10,22 +11,10 @@ const ToneApp = () => {
 
   return (
     <>
-      <h1>ToneApp</h1>
+      <Typography variant={"h2"}>ToneApp</Typography>
 
       <div>
-        <Input
-          value={toneFreq ? toneFreq : ""}
-          placeholder={"Frequency"}
-          type={"number"}
-          onChange={(event) => {
-            const value = Number(event.target.value);
-            if (value !== null && value !== undefined) {
-              setToneFreq(value);
-            } else {
-              setToneFreq(undefined);
-            }
-          }}
-        />
+        <FrequencyInput freq={toneFreq} setFreq={setToneFreq} />
       </div>
 
       <div>
