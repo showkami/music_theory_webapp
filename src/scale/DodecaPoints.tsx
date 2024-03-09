@@ -1,4 +1,6 @@
 import React from 'react';
+import {IconButton} from "@mui/material";
+import {PlayCircle} from '@mui/icons-material';
 
 export type PointProps = {
   isMute: boolean;
@@ -50,7 +52,8 @@ const DodecaPoints = (props: DodecaPointsProps) => {
               cy={cy}
               r={small_radius}
               fill={props.points[i].isMute ? "black" : "red"}
-            />
+            >
+            </circle>
 
             {/* 12個の点のうちの i 番目のテキストラベル */}
             <text

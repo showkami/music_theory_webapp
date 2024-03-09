@@ -4,7 +4,7 @@ import OscillatorButton from '../component/OscillatorButton.tsx'
 
 
 const ToneApp = () => {
-  const [toneFreq, setToneFreq] = useState<number | undefined>(undefined);
+  const [toneFreq, setToneFreq] = useState<number | undefined>(440);
   const [isSoundOn, setIsSoundOn] = useState<boolean>(false);
 
 

@@ -1,4 +1,4 @@
-import {Button, ToggleButton} from "@mui/material";
+import {Avatar, Button, IconButton, ToggleButton, Typography} from "@mui/material";
 import React, {useEffect} from "react";
 import {Oscillator} from "tone";
 
@@ -7,8 +7,9 @@ type OscillatorButtonProps = {
   freq: number,
   isSoundOn: boolean,
   setIsSoundOn: Function,
-  buttonType: "ToggleButton"
+  buttonType: "ToggleButton" | "CircleButton"
   label?: string
+  buttonProps?: {}
 }
 
 const OscillatorButton = (props: OscillatorButtonProps) => {
@@ -20,14 +21,32 @@ const OscillatorButton = (props: OscillatorButtonProps) => {
     return ()=>{osc.stop()} // クリーンアップ関数。再レンダー時にこれが呼ばれ、stopする。これをやりたいがためにuseEffectを使っている
   }) // 依存配列を渡さない (レンダーのたびにeffectを実行)。[] で指定すると初回レンダー時にしかeffectが実行されないので、 on/off 切り替わってもeffectが実行されないままになってしまう
 
+  const toggleIsSoundOn = () => {props.setIsSoundOn(!props.isSoundOn)};
+
   switch (props.buttonType) {
     case "ToggleButton":
       return (
-        <ToggleButton value={"ring"} selected={props.isSoundOn} onClick={() => {
-          props.setIsSoundOn(!props.isSoundOn);
-        }}>
+        <Button
+          variant={props.isSoundOn ? "contained" : "outlined"}
+          onClick={toggleIsSoundOn}
+          {...props.buttonProps}
+        >
           {props.label ? props.label : undefined}
-        </ToggleButton>
+        </Button>
+      )
+    case "CircleButton":
+      return (
+        <IconButton
+          onClick={toggleIsSoundOn}
+          // TODO: On/Offの状態を色で表現 (selectedとかのpropsがない。。)
+          {...props.buttonProps}
+        >
+          <Avatar>
+            <Typography variant={"button"}>
+              {props.label ? props.label : undefined}
+            </Typography>
+          </Avatar>
+        </IconButton>
       )
   }
 }
