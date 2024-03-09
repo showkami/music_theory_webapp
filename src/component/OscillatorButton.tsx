@@ -38,10 +38,11 @@ const OscillatorButton = (props: OscillatorButtonProps) => {
       return (
         <IconButton
           onClick={toggleIsSoundOn}
-          // TODO: On/Offの状態を色で表現 (selectedとかのpropsがない。。)
           {...props.buttonProps}
         >
-          <Avatar>
+          <Avatar
+            sx={{bgcolor: props.isSoundOn? "primary.main" : "default"}}
+          >
             <Typography variant={"button"}>
               {props.label ? props.label : undefined}
             </Typography>
