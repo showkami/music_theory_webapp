@@ -2,13 +2,14 @@ import React, {useEffect, useMemo, useState} from 'react';
 import {
   Box,
   Typography,
-  Button,
+  Button, ButtonGroup,
   ToggleButton,
   ToggleButtonGroup, TableContainer, TableHead, TableCell, TableRow, Table, TableBody
 } from "@mui/material";
 import OscillatorButton from "../component/OscillatorButton.tsx";
 import FrequencyInput from "../component/FrequencyInput.tsx";
 import DodecagonOscillators from "../component/DodecagonOscillators.tsx";
+import TriadSelector from "./TriadSelector.tsx";
 
 /**
  * 音階の種類の型
@@ -22,7 +23,7 @@ type Temperament =
   | "pythagorean"
 
 export default function ScaleApp() {
-  const [tonicFreq, setTonicFreq] = useState<number>(261.6255653006);
+  const [tonicFreq, setTonicFreq] = useState<number>(440 * 2 ** (-9/12));
   const [temperament, setTemperament] = useState<Temperament>("equal")
 
   const idx: number[] = Array.from({ length: 12 }, (_, i) => i);
@@ -73,7 +74,15 @@ export default function ScaleApp() {
     <>
       <Typography variant={"h2"}>ScaleApp</Typography>
 
-      Tonic = <FrequencyInput freq={tonicFreq} setFreq={setTonicFreq}/>
+      <Box>
+        Tonic = <FrequencyInput freq={tonicFreq} setFreq={setTonicFreq}/>
+        Set to:
+        <ButtonGroup>
+          <Button onClick={()=>{setTonicFreq(440 * 2 ** (-9/12))}}>C4</Button>
+          <Button onClick={()=>{setTonicFreq(440 * 2 ** (-0/12))}}>A4</Button>
+          <Button onClick={()=>{setTonicFreq(440 * 2 ** (+3/12))}}>C5</Button>
+        </ButtonGroup>
+      </Box>
 
       <Box>
         <ToggleButtonGroup
@@ -102,24 +111,7 @@ export default function ScaleApp() {
         }))
       }}>Stop All</Button>
 
-      <TableContainer component={"paper"}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>和音構成</TableCell>
-              <TableCell>自然長音階</TableCell>
-              <TableCell>和声短音階</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            <TableRow>
-              <TableCell>I - III - V (Tonic)</TableCell>
-              <TableCell> <Button onClick={()=>setIsSoundOnList([true, false, false, false, true, false, false, true, false, false, false, false])}></Button> </TableCell>
-              <TableCell>1</TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </TableContainer>
+      <TriadSelector setIsSoundOnList={setIsSoundOnList} />
     </>
   )
 }
