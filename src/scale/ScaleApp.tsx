@@ -30,15 +30,14 @@ export default function ScaleApp() {
 
   const idx: number[] = Array.from({ length: 24 }, (_, i) => i);
 
-  //const [freqs, setFreqs] = useState<number[]>([]);
   const freqs = useMemo(() => {
     switch (temperament) {
       case "equal":
-        return idx.map((i) => tonicFreq * equalTemperamentMultiple[i % 12]);
+        return idx.map((i) => tonicFreq * (1 + Math.floor(i / 12)) * equalTemperamentMultiple[i % 12]);
       case "just":
-        return idx.map((i) => tonicFreq * justTemperamentMultiple[i % 12]);
+        return idx.map((i) => tonicFreq * (1 + Math.floor(i / 12)) * justTemperamentMultiple[i % 12]);
       case "pythagorean":
-        return idx.map((i) => tonicFreq * pythagoreanTemperamentMultiple[i % 12]);
+        return idx.map((i) => tonicFreq * (1 + Math.floor(i / 12)) * pythagoreanTemperamentMultiple[i % 12]);
     }
   }, [tonicFreq, temperament])
 
@@ -61,7 +60,6 @@ export default function ScaleApp() {
       <Box>
         <ToggleButtonGroup
           value={temperament}
-          onChange={(event, newTemperament) => {setTemperament(newTemperament)}}
           size={"small"}
           color={"primary"}
           exclusive={true}
