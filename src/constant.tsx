@@ -1,5 +1,5 @@
-export const majorScaleIdx: number[]         = [0, 2, 4, 5, 7, 9, 11];
-export const minorScaleIdx: number[]         = [0, 2, 3, 5, 7, 8, 10];
+export const naturalMajorScaleIdx: number[]  = [0, 2, 4, 5, 7, 9, 11];
+export const narutalMinorScaleIdx: number[]  = [0, 2, 3, 5, 7, 8, 10];
 export const harmonicMinorScaleIdx: number[] = [0, 2, 3, 5, 7, 8, 11];
 export const melodicMinorScaleIdx: number[]  = [0, 2, 3, 5, 7, 9, 11];
 
@@ -47,3 +47,4 @@ export const pythagoreanTemperamentMultiple: number[] = [
   ]
 
 export const capitalRomanNumeral: string[] = ["I", "II", "III", "IV", "V", "VI", "VII"];
+export const smallRomanNumeral: string[] = ["i", "ii", "iii", "iv", "v", "vi", "vii"];
