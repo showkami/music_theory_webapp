@@ -35,28 +35,30 @@ export default function DodecagonOscillators(props: DodecagonOscillatorsProps) {
   });
 
   return (
-    <Box width={width*1.2} height={height*1.2} style={{'position': 'relative'}} >
-      {/* 親で position 指定をしておくことで、子要素の位置指定を、親領域内での座標でできる https://qiita.com/ikm/items/c20f0afb2e6c74fd807d */}
-      {/* width, height は必要な分の1.2倍だけ余計に取っておく */}
+    <>
+      <Box width={width*1.2} height={height*1.2} style={{'position': 'relative'}} >
+        {/* 親で position 指定をしておくことで、子要素の位置指定を、親領域内での座標でできる https://qiita.com/ikm/items/c20f0afb2e6c74fd807d */}
+        {/* width, height は必要な分の1.2倍だけ余計に取っておく */}
 
-      {
-        pointAbsPositions.map((point, i) => {
-          return (
-            <OscillatorButton
-              freq={props.freqs[i]}
-              isSoundOn={props.isSoundOnList[i]}
-              setIsSoundOn={(onoff: boolean) => {
-                const newIsSoundOnList = [...props.isSoundOnList];
-                newIsSoundOnList[i] = onoff;
-                props.setIsSoundOnList(newIsSoundOnList);
-              }}
-              label={props.freqs[i].toFixed(2)}
-              buttonType={"CircleButton"}
-              buttonProps={{style: {'position': 'absolute', 'top': point.y, 'left': point.x}}}
-            />
-          )
-        })
-      }
-    </Box>
+        {
+          pointAbsPositions.map((point, i) => {
+            return (
+              <OscillatorButton
+                freq={props.freqs[i]}
+                isSoundOn={props.isSoundOnList[i]}
+                setIsSoundOn={(onoff: boolean) => {
+                  const newIsSoundOnList = [...props.isSoundOnList];
+                  newIsSoundOnList[i] = onoff;
+                  props.setIsSoundOnList(newIsSoundOnList);
+                }}
+                label={props.freqs[i].toFixed(2)}
+                buttonType={"CircleButton"}
+                buttonProps={{style: {'position': 'absolute', 'top': point.y, 'left': point.x}}}
+              />
+            )
+          })
+        }
+      </Box>
+    </>
   )
 }
