@@ -13,7 +13,6 @@ type OscillatorButtonProps = {
 }
 
 const OscillatorButton = (props: OscillatorButtonProps) => {
-  console.warn(`OscillatorButton is rendered; isOn=${props.isSoundOn} freq=${props.freq}`)
 
   useEffect(()=>{
     const osc = new Oscillator(props.freq, "sine").toDestination();

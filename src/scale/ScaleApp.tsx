@@ -11,6 +11,8 @@ import FrequencyInput from "../component/FrequencyInput.tsx";
 import DodecagonOscillators from "../component/DodecagonOscillators.tsx";
 import TriadSelector from "./TriadSelector.tsx";
 
+import {equalTemperamentMultiple, justTemperamentMultiple, pythagoreanTemperamentMultiple} from "../constant.tsx";
+
 /**
  * 音階の種類の型
  * @enum "equal" 12平均律
@@ -32,39 +34,11 @@ export default function ScaleApp() {
   const freqs = useMemo(() => {
     switch (temperament) {
       case "equal":
-        return  idx.map((_, i) => tonicFreq * 2 ** (i / 12));
+        return idx.map((i) => tonicFreq * equalTemperamentMultiple[i % 12]);
       case "just":
-        // see https://ja.wikipedia.org/wiki/%E7%B4%94%E6%AD%A3%E5%BE%8B
-        return [
-          tonicFreq,
-          0,  // 純正律の黒鍵・・・
-          tonicFreq * 9 / 8,
-          tonicFreq * 6 / 5,  // 純正律の黒鍵・・・だが単調のIII音から
-          tonicFreq * 5 / 4,
-          tonicFreq * 4 / 3,
-          0,  // 純正律の黒鍵・・・
-          tonicFreq * 3 / 2,
-          tonicFreq * 8 / 5,  // 純正律の黒鍵・・・だが短調のVI音から
-          tonicFreq * 5 / 3,
-          tonicFreq * 9 / 5,  // 純正律の黒鍵・・・だが短調のVII音から
-          tonicFreq * 15 / 8,
-        ];
+        return idx.map((i) => tonicFreq * justTemperamentMultiple[i % 12]);
       case "pythagorean":
-        // see https://ja.wikipedia.org/wiki/%E3%83%94%E3%82%BF%E3%82%B4%E3%83%A9%E3%82%B9%E9%9F%B3%E5%BE%8B
-        return [
-          tonicFreq,  // 完全一度
-          tonicFreq * 256 / 243,  // 短2度
-          tonicFreq * 9 / 8,  // 長2度
-          tonicFreq * 32 / 27, // 短3度
-          tonicFreq * 81 / 64, // 長3度
-          tonicFreq * 4 / 3, // 完全4度
-          tonicFreq * 729 / 512, // 増4度 (減5度としては1024/729... 異名同音が異なる音になってしまう)
-          tonicFreq * 3 / 2, // 完全5度
-          tonicFreq * 128 / 81, // 短6度
-          tonicFreq * 27 / 16, // 長6度
-          tonicFreq * 16 / 9, // 短7度
-          tonicFreq * 243 / 128, // 長7度
-        ];
+        return idx.map((i) => tonicFreq * pythagoreanTemperamentMultiple[i % 12]);
     }
   }, [tonicFreq, temperament])
 
