@@ -43,7 +43,7 @@ const OscillatorButton = (props: OscillatorButtonProps) => {
           <Avatar
             sx={{bgcolor: props.isSoundOn? "primary.main" : "default"}}
           >
-            <Typography variant={"button"}>
+            <Typography variant={"caption"}>
               {props.label ? props.label : undefined}
             </Typography>
           </Avatar>
