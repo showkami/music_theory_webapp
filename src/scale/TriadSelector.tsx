@@ -1,9 +1,21 @@
-import {Button, Icon, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@mui/material";
+import {
+  Tooltip,
+  Icon,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Typography
+} from "@mui/material";
 import React from "react";
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
-import StopCircleIcon from '@mui/icons-material/StopCircle';
+import InfoIcon from '@mui/icons-material/Info';
+import {capitalRomanNumeral} from "../constant.tsx";
 
 type TriadSelectorProps = {
+  isSoundOnList: boolean[],
   setIsSoundOnList: Function
 }
 
@@ -22,7 +34,7 @@ export default function TriadSelector(props: TriadSelectorProps) {
    *  -> isSoundOnList -> [true, false, false, true, false, false, false, false, false, false, false, false]
    */
   const setIsSoundOnList = (onIds: number[]) => {
-    const idx = Array.from({ length: 12 }, (_, i) => i);
+    const idx = Array.from({ length: props.isSoundOnList.length }, (_, i) => i);
     const newSoundOnList = idx.map((i) => onIds.includes(i));
     props.setIsSoundOnList(newSoundOnList);
   }
@@ -31,12 +43,11 @@ export default function TriadSelector(props: TriadSelectorProps) {
    * isSoundOnList を全てOffにする
    */
   const resetIsSoundOnList = () => {
-    props.setIsSoundOnList(Array.from({length: 12}, () => false));
+    props.setIsSoundOnList(Array.from({length: props.isSoundOnList.length}, () => false));
   }
 
   /**
    * 押している間だけ、 onIds で指定した単音をOnにして、離すとすべてOffになる、ようなボタン
-   * @param onIds
    */
   const PlayButton = (playButtonProps: {onIds: number[]}) => {
     return (
@@ -53,25 +64,30 @@ export default function TriadSelector(props: TriadSelectorProps) {
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>和音構成</TableCell>
-              <TableCell>自然長音階</TableCell>
-              <TableCell>和声短音階</TableCell>
+              <TableCell> Root <Tooltip title={"根音...第I音〜第VII音"}><InfoIcon fontSize={"small"}/></Tooltip> </TableCell>
+              <TableCell> Minor triad <Tooltip title={"短三和音 = 根音 + 短三度 + 完全五度"}><InfoIcon fontSize={"small"}/></Tooltip> </TableCell>
+              <TableCell> Major triad <Tooltip title={"長三和音 = 根音 + 長三度 + 完全五度"}><InfoIcon fontSize={"small"}/></Tooltip> </TableCell>
+              <TableCell> Diminished triad <Tooltip title={"減三和音 = 根音 + 短三度 + 減五度(三全音)"}><InfoIcon fontSize={"small"}/></Tooltip> </TableCell>
+              <TableCell> Augmented triad <Tooltip title={"増三和音 = 根音 + 長三度 + 増五度"}><InfoIcon fontSize={"small"}/></Tooltip> </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            <TableRow>
-              <TableCell>I - III - V (Tonic)</TableCell>
-              <TableCell> <PlayButton onIds={[0,4,7]} /> </TableCell>
-              <TableCell> <PlayButton onIds={[0,3,7]} /> </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>II - IV - VI</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>IV - VI - I' (Subdominant)</TableCell>
-              <TableCell> <PlayButton onIds={[]} /> </TableCell>
-                {/*TODO: 1オクターブ高いやつもDodecagonに加えないと、鳴らせない。。*/}
-            </TableRow>
+            {
+              // 根音が第I音〜第VII音までの三和音を表示
+              Array.from(
+                {length: 7}, (_, i) => i
+              ).map((_, i) => {
+                return (
+                  <TableRow key={i}>
+                    <TableCell> {capitalRomanNumeral[i]} </TableCell>
+                    <TableCell> <PlayButton onIds={[0+i, 3+i, 7+i]} /> </TableCell>
+                    <TableCell> <PlayButton onIds={[0+i, 4+i, 7+i]} /> </TableCell>
+                    <TableCell> <PlayButton onIds={[0+i, 3+i, 6+i]} /> </TableCell>
+                    <TableCell> <PlayButton onIds={[0+i, 4+i, 8+i]} /> </TableCell>
+                  </TableRow>
+                )
+              })
+            }
           </TableBody>
         </Table>
       </TableContainer>

@@ -83,7 +83,7 @@ export default function ScaleApp() {
         }))
       }}>Stop All</Button>
 
-      <TriadSelector setIsSoundOnList={setIsSoundOnList} />
+      <TriadSelector isSoundOnList={isSoundOnList} setIsSoundOnList={setIsSoundOnList} />
     </>
   )
 }

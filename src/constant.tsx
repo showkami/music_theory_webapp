@@ -45,3 +45,5 @@ export const pythagoreanTemperamentMultiple: number[] = [
     16 / 9, // 短7度
     243 / 128, // 長7度
   ]
+
+export const capitalRomanNumeral: string[] = ["I", "II", "III", "IV", "V", "VI", "VII"];
