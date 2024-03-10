@@ -45,12 +45,11 @@ export default function ScaleApp() {
 
   return (
     <>
-      <Typography variant={"h2"}>ScaleApp</Typography>
-
       <Box>
         Tonic = <FrequencyInput freq={tonicFreq} setFreq={setTonicFreq}/>
         Set to:
         <ButtonGroup variant={"text"}>
+          <Button onClick={()=>{setTonicFreq(440 * 2 ** (-12/12))}}>A3</Button>
           <Button onClick={()=>{setTonicFreq(440 * 2 ** (-9/12))}}>C4</Button>
           <Button onClick={()=>{setTonicFreq(440 * 2 ** (-0/12))}}>A4</Button>
           <Button onClick={()=>{setTonicFreq(440 * 2 ** (+3/12))}}>C5</Button>
