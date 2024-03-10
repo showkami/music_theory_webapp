@@ -50,7 +50,7 @@ export default function ScaleApp() {
       <Box>
         Tonic = <FrequencyInput freq={tonicFreq} setFreq={setTonicFreq}/>
         Set to:
-        <ButtonGroup>
+        <ButtonGroup variant={"text"}>
           <Button onClick={()=>{setTonicFreq(440 * 2 ** (-9/12))}}>C4</Button>
           <Button onClick={()=>{setTonicFreq(440 * 2 ** (-0/12))}}>A4</Button>
           <Button onClick={()=>{setTonicFreq(440 * 2 ** (+3/12))}}>C5</Button>
