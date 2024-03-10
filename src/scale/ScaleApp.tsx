@@ -26,7 +26,7 @@ export default function ScaleApp() {
   const [tonicFreq, setTonicFreq] = useState<number>(440 * 2 ** (-9/12));
   const [temperament, setTemperament] = useState<Temperament>("equal")
 
-  const idx: number[] = Array.from({ length: 12 }, (_, i) => i);
+  const idx: number[] = Array.from({ length: 24 }, (_, i) => i);
 
   //const [freqs, setFreqs] = useState<number[]>([]);
   const freqs = useMemo(() => {
