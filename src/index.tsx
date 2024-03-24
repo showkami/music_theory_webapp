@@ -21,7 +21,6 @@ root.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      hello
       <App />
     </ThemeProvider>
   </React.StrictMode>
