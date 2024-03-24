@@ -6,12 +6,12 @@ import {
   ToggleButton,
   ToggleButtonGroup, TableContainer, TableHead, TableCell, TableRow, Table, TableBody
 } from "@mui/material";
-import OscillatorButton from "../component/OscillatorButton.tsx";
-import FrequencyInput from "../component/FrequencyInput.tsx";
-import DodecagonOscillators from "../component/DodecagonOscillators.tsx";
-import TriadSelector from "./TriadSelector.tsx";
+import OscillatorButton from "../component/OscillatorButton";
+import FrequencyInput from "../component/FrequencyInput";
+import DodecagonOscillators from "../component/DodecagonOscillators";
+import TriadSelector from "./TriadSelector";
 
-import {equalTemperamentMultiple, justTemperamentMultiple, pythagoreanTemperamentMultiple} from "../constant.tsx";
+import {equalTemperamentMultiple, justTemperamentMultiple, pythagoreanTemperamentMultiple} from "../constant";
 
 /**
  * 音階の種類の型

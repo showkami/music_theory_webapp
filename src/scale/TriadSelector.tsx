@@ -12,7 +12,7 @@ import {
 import React from "react";
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import InfoIcon from '@mui/icons-material/Info';
-import {capitalRomanNumeral, harmonicMinorScaleIdx, naturalMajorScaleIdx, smallRomanNumeral} from "../constant.tsx";
+import {capitalRomanNumeral, harmonicMinorScaleIdx, naturalMajorScaleIdx, smallRomanNumeral} from "../constant";
 
 type TriadSelectorProps = {
   isSoundOnList: boolean[],
@@ -92,10 +92,10 @@ export default function TriadSelector(props: TriadSelectorProps) {
                   return (
                     <>
                       {
-                        scaleChipProps.isInMajorScale ? <Tooltip title={"自然長音階に含まれる和音"}> <Chip size={"small"} label={"M"} color={"primary"} /> </Tooltip> : <></>
+                        scaleChipProps.isInMajorScale ? <Tooltip title={"自然長音階に含まれる和音"}><Chip size={"small"} label={"M"} color={"primary"} /></Tooltip> : <></>
                       }
                       {
-                        scaleChipProps.isInMinorScale ? <Tooltip title={"和声短音階に含まれる和音"}> <Chip size={"small"} label={"m"} color={"secondary"} /> </Tooltip> : <></>
+                        scaleChipProps.isInMinorScale ? <Tooltip title={"和声短音階に含まれる和音"}><Chip size={"small"} label={"m"} color={"secondary"} /></Tooltip> : <></>
                       }
                     </>
                   )
