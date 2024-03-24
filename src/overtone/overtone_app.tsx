@@ -1,12 +1,13 @@
-import {Box, Button} from "@mui/material"
+import {Box, Button, Slider, Stack, Grid, Input} from "@mui/material"
 import FrequencyInput from "../component/FrequencyInput";
 import {useState} from "react";
 import OscillatorButton from "../component/OscillatorButton";
 export default function OvertoneApp() {
   const [fundFreq, setFundFreq] = useState<number>(220);
 
-  const overtoneLevels = [1, 2, 3, 4, 5, 6, 7];
+  const overtoneLevels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
   const [isSoundsOn, setIsSoundsOn] = useState<boolean[]>(overtoneLevels.map((_) => false))
+  const [soundVolumes, setSoundVolumes] = useState<number[]>(overtoneLevels.map((_) => 1));
   console.log(isSoundsOn)
 
   /**
@@ -45,22 +46,45 @@ export default function OvertoneApp() {
       <Box>
         {overtoneLevels.map((level: number, i) => {
           return (
-            <Box sx={{display: "flex"}}>
-              <OscillatorButton
-                freq={fundFreq * level}
-                label={formatOrder(level) + "(" + (fundFreq * level).toFixed(5) + " Hz)"}
-                isSoundOn={isSoundsOn[i]}
-                setIsSoundOn={() => {
-                  setIsSoundsOn((prev) => {
-                    const newIsSoundsOn = [...prev];
-                    newIsSoundsOn[i] = !newIsSoundsOn[i]
-                    console.log(prev, newIsSoundsOn)
-                    return newIsSoundsOn;
-                  })
-                }}
-                buttonType={"ToggleButton"}
-              />
-            </Box>
+            <Stack>
+              <Grid container paddingLeft={2} paddingRight={2}>
+                <Grid item xs={6} md={2}>
+                  <OscillatorButton
+                    freq={fundFreq * level}
+                    label={formatOrder(level) + "(" + (fundFreq * level).toFixed(2) + " Hz)"}
+                    isSoundOn={isSoundsOn[i]}
+                    setIsSoundOn={() => {
+                      setIsSoundsOn((prev) => {
+                        const newIsSoundsOn = [...prev];
+                        newIsSoundsOn[i] = !newIsSoundsOn[i]
+                        console.log(prev, newIsSoundsOn)
+                        return newIsSoundsOn;
+                      })
+                    }}
+                    volume={soundVolumes[i]}
+                    buttonType={"ToggleButton"}
+                  />
+                </Grid>
+                <Grid item xs={6} md={8} minWidth={"100px"} >
+                  <Slider
+                    value={soundVolumes[i]}
+                    onChange={(evt, value) => {
+                      setSoundVolumes((prev) => {
+                        const newVolumes = [...prev];
+                        newVolumes[i] = value as number;
+                        return newVolumes
+                      })
+                    }}
+                    step={0.001}
+                    defaultValue={1}
+                    min={0}
+                    max={1}
+                    size={"small"}
+                    valueLabelDisplay={"auto"}
+                  />
+                </Grid>
+              </Grid>
+            </Stack>
           )
         })}
       </Box>
