@@ -22,9 +22,10 @@
     "@testing-library/user-event": "^14.5.2",
     "@types/react": "^18.2.64",
     "@types/react-dom": "^18.2.21",
+    "npm": "^10.5.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-scripts": "^5.0.1",
+    "react-scripts": "^3.0.1",
     "testing-library": "^0.0.2",
     "tone": "^14.7.77",
     "web-vitals": "^3.5.2"
