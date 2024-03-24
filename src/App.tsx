@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
-import ScaleApp from './scale/ScaleApp'
 import {Tabs, Tab} from '@mui/material';
+import ScaleApp from './scale/ScaleApp';
+import OvertoneApp from './overtone/overtone_app'
 
 type AppType = "Overtone" | "Scale";
 
@@ -16,7 +17,7 @@ const App = () => {
     console.log(showingApp)
     switch (showingApp) {
       case "Overtone":
-        return <Overtone />
+        return <OvertoneApp />
       case ("Scale"):
         return <ScaleApp />
       default:
@@ -27,6 +28,7 @@ const App = () => {
   return (
     <>
       <Tabs value={showingApp} onChange={handleChangeApp}>
+        <Tab value={"Overtone"} label={"Overtone"} />
         <Tab value={"Scale"} label={"Scale"} />
       </Tabs>
 
