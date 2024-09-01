@@ -10,7 +10,7 @@ const theme = createTheme({
     mode: 'light',
   },
   typography: {
-    fontFamily: '"M PLUS 1", sans-serif',
+    fontFamily: '"BIZ UDPGothic", sans-serif',
   },
 });
 
