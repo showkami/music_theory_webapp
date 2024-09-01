@@ -11,7 +11,7 @@ export default function FrequencyInput(props: FrequencyInputProps) {
     <>
       <Input
         value={props.freq ? props.freq.toFixed(5) : ""}
-        style={{ width: "250px" }}
+        style={{ width: "280px" }}
         placeholder={"Frequency"}
         type={"number"}
         onChange={(event) => {

@@ -3,7 +3,7 @@ import FrequencyInput from "../component/FrequencyInput";
 import {useState} from "react";
 import OscillatorButton from "../component/OscillatorButton";
 export default function OvertoneApp() {
-  const [fundFreq, setFundFreq] = useState<number>(220);
+  const [fundFreq, setFundFreq] = useState<number>(440 * 2 ** (-9/12));
 
   const overtoneLevels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
   const [isSoundsOn, setIsSoundsOn] = useState<boolean[]>(overtoneLevels.map((_) => false))
@@ -75,12 +75,13 @@ export default function OvertoneApp() {
                         return newVolumes
                       })
                     }}
-                    step={0.001}
+                    step={0.005}
                     defaultValue={1}
                     min={0}
                     max={1}
                     size={"small"}
                     valueLabelDisplay={"auto"}
+                    valueLabelFormat={(value) => value.toFixed(3)}
                   />
                 </Grid>
               </Grid>
