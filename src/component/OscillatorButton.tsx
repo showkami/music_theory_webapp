@@ -33,12 +33,16 @@ const linearToDecibel = (linearScale: number): number => {
 
 const OscillatorButton = (props: OscillatorButtonProps) => {
 
+  const {freq, isSoundOn, volume} = props;
   useEffect(()=>{
-    const osc = new Oscillator(props.freq, "sine").toDestination();
-    if (props.isSoundOn) osc.start();
-    osc.volume.value = props.volume !== undefined ? linearToDecibel(props.volume) : 1
-    return ()=>{osc.stop()} // クリーンアップ関数。再レンダー時にこれが呼ばれ、stopする。これをやりたいがためにuseEffectを使っている
-  }) // 依存配列を渡さない (レンダーのたびにeffectを実行)。[] で指定すると初回レンダー時にしかeffectが実行されないので、 on/off 切り替わってもeffectが実行されないままになってしまう
+    const osc = new Oscillator(freq, "sine").toDestination();
+    if (isSoundOn) osc.start();
+    osc.volume.value = volume !== undefined ? linearToDecibel(volume) : 1
+    return ()=>{
+      // クリーンアップ関数。再レンダー時にこれが呼ばれ、stopする。これをやりたいがためにuseEffectを使っている
+      osc.stop()
+    }
+  }, [freq, isSoundOn, volume])
 
   const toggleIsSoundOn = () => {props.setIsSoundOn(!props.isSoundOn)};
 
