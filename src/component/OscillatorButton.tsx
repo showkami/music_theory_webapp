@@ -1,17 +1,6 @@
-import {Avatar, Button, IconButton, ToggleButton, Typography} from "@mui/material";
+import {Avatar, Box, Button, IconButton, ToggleButton, Typography} from "@mui/material";
 import React, {useEffect} from "react";
 import {Oscillator} from "tone";
-
-
-type OscillatorButtonProps = {
-  freq: number,
-  isSoundOn: boolean,
-  setIsSoundOn: Function,
-  volume?: number,
-  buttonType: "ToggleButton" | "CircleButton"
-  label?: string
-  buttonProps?: {}
-}
 
 /**
  * 線形スケールの音量 x（0 ≤ x ≤ 1）をデシベルスケールに変換します。
@@ -31,6 +20,14 @@ const linearToDecibel = (linearScale: number): number => {
   }
 }
 
+type OscillatorButtonProps = {
+  freq: number,
+  isSoundOn: boolean,
+  setIsSoundOn: Function,
+  volume?: number,
+  buttonProps?: {}
+}
+
 const OscillatorButton = (props: OscillatorButtonProps) => {
 
   const {freq, isSoundOn, volume} = props;
@@ -46,33 +43,27 @@ const OscillatorButton = (props: OscillatorButtonProps) => {
 
   const toggleIsSoundOn = () => {props.setIsSoundOn(!props.isSoundOn)};
 
-  switch (props.buttonType) {
-    case "ToggleButton":
-      return (
-        <Button
-          variant={props.isSoundOn ? "contained" : "outlined"}
-          onClick={toggleIsSoundOn}
-          {...props.buttonProps}
-        >
-          {props.label ? props.label : undefined}
-        </Button>
-      )
-    case "CircleButton":
-      return (
-        <IconButton
-          onClick={toggleIsSoundOn}
-          {...props.buttonProps}
-        >
-          <Avatar
-            sx={{backgroundColor: props.isSoundOn? "primary.main" : "primary.second"}}
-          >
-            <Typography variant={"caption"} style={{fontSize: 8}}>
-              {props.label ? props.label : undefined}
-            </Typography>
-          </Avatar>
-        </IconButton>
-      )
-  }
+  const [labelInt, labelDecimal] = freq.toFixed(2).split(".")
+  return (
+    <IconButton
+      onClick={toggleIsSoundOn}
+      {...props.buttonProps}
+    >
+      <Avatar
+        sx={{backgroundColor: props.isSoundOn? "primary.main" : "primary.second"}}
+      >
+        <Box style={{ whiteSpace: 'pre-line', textAlign: 'center' }}>
+          <Typography fontSize={10} lineHeight={0} marginBottom={0}>
+            {labelInt}
+          </Typography>
+          {"\n"}
+          <Typography fontSize={8} lineHeight={0} marginTop={0}>
+            {"." + labelDecimal}
+          </Typography>
+        </Box>
+      </Avatar>
+    </IconButton>
+  )
 }
 
 export default OscillatorButton;

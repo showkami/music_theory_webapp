@@ -50,7 +50,6 @@ export default function OvertoneApp() {
                 <Grid item xs={6} md={2}>
                   <OscillatorButton
                     freq={fundFreq * level}
-                    label={formatOrder(level) + "(" + (fundFreq * level).toFixed(2) + " Hz)"}
                     isSoundOn={isSoundsOn[i]}
                     setIsSoundOn={() => {
                       setIsSoundsOn((prev) => {
@@ -60,7 +59,6 @@ export default function OvertoneApp() {
                       })
                     }}
                     volume={soundVolumes[i]}
-                    buttonType={"ToggleButton"}
                   />
                 </Grid>
                 <Grid item xs={6} md={8} minWidth={"100px"} >
