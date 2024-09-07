@@ -1,7 +1,8 @@
-import {Box, Button, Slider, Stack, Grid, Input, Typography, Divider} from "@mui/material"
+import {Box, Button, Slider, Stack, Grid, Typography, Divider} from "@mui/material"
 import FrequencyInput from "../component/FrequencyInput";
 import {useState} from "react";
 import OscillatorButton from "../component/OscillatorButton";
+
 export default function OvertoneApp() {
   const [fundFreq, setFundFreq] = useState<number>(440 * 2 ** (-9/12));
 

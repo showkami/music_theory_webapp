@@ -1,6 +1,6 @@
 import OscillatorButton from "./OscillatorButton";
 import {Box} from "@mui/material";
-import React, {useState} from "react";
+import React from "react";
 
 /**
  * 座標

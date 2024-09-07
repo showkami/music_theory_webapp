@@ -1,12 +1,10 @@
-import React, {useEffect, useMemo, useState} from 'react';
+import React, {useMemo, useState} from 'react';
 import {
   Box,
-  Typography,
-  Button, ButtonGroup,
+  Button,
   ToggleButton,
-  ToggleButtonGroup, TableContainer, TableHead, TableCell, TableRow, Table, TableBody
+  ToggleButtonGroup,
 } from "@mui/material";
-import OscillatorButton from "../component/OscillatorButton";
 import FrequencyInput from "../component/FrequencyInput";
 import DodecagonOscillators from "../component/DodecagonOscillators";
 import TriadSelector from "./TriadSelector";
@@ -61,7 +59,6 @@ export default function ScaleApp() {
           <ToggleButton value={"pythagorean"} onClick={() => setTemperament("pythagorean")}>ピタゴラス音律</ToggleButton>
         </ToggleButtonGroup>
       </Box>
-
 
       <DodecagonOscillators
         freqs={freqs}
