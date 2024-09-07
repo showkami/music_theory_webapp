@@ -8,13 +8,10 @@ type AppType = "Overtone" | "Scale";
 const App = () => {
   const [showingApp, setShowingApp] = useState<AppType>("Scale");
   const handleChangeApp = (event: React.SyntheticEvent, newValue: string) => {
-    console.log("Event:", event)
-    console.log("newValue:", newValue)
     setShowingApp(newValue as AppType);
   };
 
   const TabContent = () => {
-    console.log(showingApp)
     switch (showingApp) {
       case "Overtone":
         return <OvertoneApp />

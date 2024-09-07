@@ -1,6 +1,6 @@
 import OscillatorButton from "./OscillatorButton";
 import {Box} from "@mui/material";
-import React, {useState} from "react";
+import React from "react";
 
 /**
  * 座標
@@ -51,8 +51,6 @@ export default function DodecagonOscillators(props: DodecagonOscillatorsProps) {
                   newIsSoundOnList[i] = onoff;
                   props.setIsSoundOnList(newIsSoundOnList);
                 }}
-                label={props.freqs[i].toFixed(2)}
-                buttonType={"CircleButton"}
                 buttonProps={{style: {'position': 'absolute', 'top': point.y, 'left': point.x}}}
               />
             )
