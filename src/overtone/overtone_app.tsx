@@ -5,10 +5,9 @@ import OscillatorButton from "../component/OscillatorButton";
 export default function OvertoneApp() {
   const [fundFreq, setFundFreq] = useState<number>(440 * 2 ** (-9/12));
 
-  const overtoneLevels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+  const overtoneLevels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27];
   const [isSoundsOn, setIsSoundsOn] = useState<boolean[]>(overtoneLevels.map((_) => false))
   const [soundVolumes, setSoundVolumes] = useState<number[]>(overtoneLevels.map((_) => 1));
-  console.log(isSoundsOn)
 
   /**
    * 1st, 2nd とかを返す
@@ -57,7 +56,6 @@ export default function OvertoneApp() {
                       setIsSoundsOn((prev) => {
                         const newIsSoundsOn = [...prev];
                         newIsSoundsOn[i] = !newIsSoundsOn[i]
-                        console.log(prev, newIsSoundsOn)
                         return newIsSoundsOn;
                       })
                     }}
